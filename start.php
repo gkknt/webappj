@@ -11,7 +11,7 @@
 </div>
 
 <?php
-var det=$_GET['det'];
+var $det=$_GET['det'];
 
 ?>
 
