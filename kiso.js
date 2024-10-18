@@ -6,4 +6,4 @@ $('#wow').attr('height', h);
 const canvas = document.querySelector('.wow');
 const ctx = canvas.getContext('2d');
 const det='<?=$det?>';
-ctx.filltext($det,100,100);
+ctx.filltext(det,100,100);
