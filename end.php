@@ -13,8 +13,6 @@
 <a href="start.php"?det=3>
     <img src="pet_sanpp_lead.png">
 </a>
-    <?php
-    ?>
 
 </body>
 
