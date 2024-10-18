@@ -11,7 +11,7 @@
     <img src="koudan_man.png">
 </a>
 <a href="start.php"?det=3>
-    <img src="pet_sanpp_lead.png">
+    <img src="pet_sanpo_lead.png">
 </a>
 
 </body>
