@@ -10,6 +10,11 @@
     <canvas id="wow" ></canvas>
 </div>
 
+<?php
+var det=$_GET['det'];
+
+?>
+
 
 </body>
 </html>
