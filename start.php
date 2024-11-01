@@ -27,7 +27,7 @@ $plhp=10000;
 $turn=0;
 
 
-echo 
+echo "<img src="'$array[$det]'">";
 ?>
 
 
