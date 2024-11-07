@@ -27,8 +27,36 @@ $plhp=10000;
 $turn=0;
 
 
-echo "<img src="'$array[$det]'">";
 ?>
+
+<div id="field">
+    <div class="hp">
+        <div  id="enmg">
+            <img src="スリムゲージ1.png">
+        </div>
+        <div  id="enmr">
+            <img src="スリムゲージ3.png">
+        </div>
+    </div>
+    <div class="player" id="enm">
+        <img src="<?php echo $array[$enm]?>">
+    </div>
+    <div class="card">
+        <img src="2628283.png">
+        <img src="2628283.png">
+    </div>
+    <div class="player" id="pla">
+        <img src="<?php echo $array[$det]?>">
+    <div class="hp">
+        <div  id="plag">
+            <img src="スリムゲージ1.png">
+        </div>
+        <div  id="plar">
+            <img src="スリムゲージ3.png">
+        </div>
+    </div>
+    </div>
+</div>
 
 
 </body>
