@@ -9,20 +9,32 @@ https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js
     <title>first</title>
 
     <style>
+
+        .seca{
+            background-color: white;
+        }
+        body {
+            margin:0;
+        }
         .hp  img{
             width:20vw;
             height:auto;
             justify-content:center 
         }
 
+        .player img {
+            width:30vw;
+            height:auto;
+        }
+
         #hppl{
-            font-size: 20px;    /* 文字サイズ指定 */
-            color: #2196F3;     /* 文字色指定 */
+            font-size: 20px;    
+            color: white;     
         }
 
         #hpe{
-            font-size: 20px;    /* 文字サイズ指定 */
-            color: #2196F3;     /* 文字色指定 */
+            font-size: 20px;    
+            color: white;  
         }
         
         #field{
@@ -34,6 +46,7 @@ https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js
             background-image:url(22798049.jpg);
             background-size:cover;
             display:flex;
+            text-align: center;
         }
         .card img{
             width:50%;
@@ -85,6 +98,7 @@ $det=$_GET['det'];
     var hp=10000,plhp=10000,ehp=10000;
 
 
+
 </script>
 
 <div id="field">
@@ -95,16 +109,22 @@ $det=$_GET['det'];
         </div>
         <div id="ehp">
             <script>
+                function hpe(){
                 var hpe = document.getElementById("ehp");
-                hpe.innerHTML ="接触まで" +ehp/hp*100+"%";
+                hpe.style.backgroundColor = 'red';
+                hpe.innerHTML ="完全接触まで" +ehp/hp*100+"%";
+                }
             </script>
         </div>
     </div>
     <div class="player" >
         <div id="epng">
-        <img src="<?php echo $array[$enm]?>">
+            <img src="<?php echo $array[$enm]?>">
+        </div>
     </div>
     </div>
+    <div class="seca">
+        <?php echo "カードを選んでください"?>
     </div>
     <div class="card">
         <div id="h0">
@@ -120,51 +140,57 @@ $det=$_GET['det'];
         <script>
             function battle(i){
                 var j=Math.floor(Math.random()*2);
+                act=0;
                 if(pha[i]>eha[j]){
                     act=ehp;
                     ehp=ehp-pha[i]*500;
-                    act=ehp/hp*100;
+                    act=(act-ehp)/hp*100;
                     animes(0);
                 }else if(pha[i]<eha[j]){
                     act=plhp;
                     plhp=plhp-eha[j]*500;
-                    act=plhp/hp*100;
+                    act=(act-plhp)/hp*100;
                     animes(1);
                 }else{
-                    act=0;
-                    animes(2);
+                    console.log("equal");
                 }
+                hpe();
+                hppl();
 
+                console.log(eha[j]);
                 eha[j]=edec[Math.floor(Math.random()*6)];
                 pha[i]=pdec[Math.floor(Math.random()*6)];
 
-                if(ehp<0||plhp<0){
-                    window.location.href("end.php");
-
+                if(ehp<=0){
+                    window.location.href="end.php?res=1";
+                }else if(plhp<=0){
+                    window.location.href="end.php?res=2";
                 }
             }
 
             function cardsst(x){
                 var mydiv = document.getElementById("hs"+x);
-                mydiv.innerHTML = "このカードはコスト"+pha[x]+"の攻撃力は"+pha[x]*500+"です";
+                mydiv.style.backgroundColor = 'white';
+                mydiv.innerHTML = "このカードはコスト"+pha[x]+"の攻撃力は"+pha[x]*5+"%です";
             }
 
             function animes(y){
                 
                 if(y==0){
-                    console.log(y,ehp);
+                    console.log(y,act);
                     anime({
                     targets: ".hp #enmg",
-                    translateX: ""+act+"%",
-                    duration: 200
+                    translateX: ""+Math.round(act)+"%",
+                    duration: 600
                    
                     });
                 }else if(y==1){ 
-                    console.log(y,plhp);
+                    console.log(y,act);
+                    act=act*-1;
                     anime({
                     targets: ".hp #plag",
-                    translateX: ""+(-1*act)+"%",
-                    duration: 200
+                    translateX: ""+(Math.round(act))+"%",
+                    duration: 600
                     
                     });
                     
@@ -187,8 +213,11 @@ $det=$_GET['det'];
         </div>
         <div id="plhp">
             <script>
+                function hppl(){
                 var hppl = document.getElementById("plhp");
-                hppl.innerHTML ="接触まで" +plhp/hp*100+"%";
+                hppl.style.backgroundColor = 'white';
+                hppl.innerHTML ="完全接触まで" +plhp/hp*100+"%";
+                }
             </script>
         </div>
     </div>
